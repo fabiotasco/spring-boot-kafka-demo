@@ -1,0 +1,25 @@
+# Kafka
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: test-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: io.fab.connector.data
+
+# Application
+app:
+  kafka:
+    topic:
+      catalog-event: catalog-change
+    
+# Log
+logging:
+  level:
+    root: error
+    br.com.gaveteiro: debug
