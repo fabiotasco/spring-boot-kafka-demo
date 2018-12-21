@@ -14,7 +14,6 @@ import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import io.fab.connector.consumers.CatalogEventConsumer;
 import io.fab.connector.data.CatalogEvent;
 import io.fab.connector.data.CatalogEventMessage;
 import io.fab.connector.data.CatalogEventType;
@@ -47,7 +46,7 @@ public class CatalogEventConsumerTest {
 	private CatalogEventMessage createMessage() {
 		return new CatalogEventMessage(
 			new Product("12345678", "Teste", null, null, null, null, null, null, null),
-			new CatalogEvent(CatalogEventType.STOCK_CHANGE, null),
+			new CatalogEvent(CatalogEventType.STOCK_UPDATE, null),
 			Source.GAVETEIRO);
 	}
 

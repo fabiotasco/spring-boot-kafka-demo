@@ -5,11 +5,13 @@ import java.util.concurrent.CountDownLatch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import io.fab.connector.data.CatalogEventMessage;
+import io.fab.connector.rules.CatalogEventRules;
 
 /**
  * Consome os eventos ocorridos no catálogo da Gaveteiro.
@@ -23,6 +25,9 @@ public class CatalogEventConsumer {
 
 	private final CountDownLatch latch = new CountDownLatch(1);
 
+	@Autowired
+	private CatalogEventRules catalogEventRules;
+
 	/**
 	 * Consome uma mensagem do Kafka.
 	 *
@@ -31,7 +36,8 @@ public class CatalogEventConsumer {
 	@KafkaListener(topics = "${app.kafka.topic.catalog-event}")
 	public void consume(@Payload final CatalogEventMessage message) {
 		LOG.debug("Consuming Gaveteito catalog event: {}", message);
-		// TODO: Implementar regras de negócio!
+
+		catalogEventRules.processMessage(message);
 		latch.countDown();
 	}
 

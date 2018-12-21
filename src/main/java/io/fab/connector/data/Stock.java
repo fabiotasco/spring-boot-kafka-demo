@@ -11,6 +11,10 @@ public class Stock implements Serializable {
 
 	Stock() {}
 
+	public Stock(final Integer quantity) {
+		this.quantity = quantity;
+	}
+
 	public Integer getQuantity() {
 		return quantity;
 	}
