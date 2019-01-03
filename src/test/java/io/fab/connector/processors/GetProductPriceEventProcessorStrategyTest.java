@@ -6,11 +6,11 @@ import org.junit.Test;
 import io.fab.connector.AbstractBaseKafkaTest;
 import io.fab.connector.data.EventType;
 
-public class PriceUpdateEventProcessorStrategyTest extends AbstractBaseKafkaTest {
+public class GetProductPriceEventProcessorStrategyTest extends AbstractBaseKafkaTest {
 
 	@Test
 	public void testEventProcessment() {
-		producer.produce(buildBaseCatalogEventMessage(EventType.PRICE_UPDATE));
+		producer.produce(buildBaseCatalogEventMessage(EventType.GET_PRODUCT_PRICE));
 	}
 
 }

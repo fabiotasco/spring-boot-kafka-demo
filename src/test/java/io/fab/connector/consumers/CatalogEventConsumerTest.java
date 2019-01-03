@@ -3,6 +3,7 @@ package io.fab.connector.consumers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.ClassRule;
@@ -14,9 +15,9 @@ import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import io.fab.connector.data.CatalogEvent;
 import io.fab.connector.data.CatalogEventMessage;
-import io.fab.connector.data.CatalogEventType;
+import io.fab.connector.data.Event;
+import io.fab.connector.data.EventType;
 import io.fab.connector.data.Product;
 import io.fab.connector.data.Source;
 import io.fab.connector.producers.CatalogEventProducer;
@@ -46,7 +47,7 @@ public class CatalogEventConsumerTest {
 	private CatalogEventMessage createMessage() {
 		return new CatalogEventMessage(
 			new Product("12345678", "Teste", null, null, null, null, null, null, null),
-			new CatalogEvent(CatalogEventType.STOCK_UPDATE, null),
+			new Event(EventType.STOCK_UPDATE, null, new Date()),
 			Source.GAVETEIRO);
 	}
 

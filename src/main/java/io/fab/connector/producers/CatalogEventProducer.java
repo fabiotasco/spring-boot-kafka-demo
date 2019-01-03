@@ -27,7 +27,7 @@ public class CatalogEventProducer {
 	 * @param message Conteúdo da mensagem original.
 	 */
 	public void produce(final CatalogEventMessage catalogEventMessage) {
-		LOG.debug("Sending Gaveteiro catalog event {} to topic {}.", catalogEventMessage, catalogEventTopic);
+		LOG.debug("Sending message {} to topic {}.", catalogEventMessage, catalogEventTopic);
 		kafkaTemplate.send(catalogEventTopic, catalogEventMessage);
 	}
 

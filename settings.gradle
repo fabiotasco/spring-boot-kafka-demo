@@ -1,1 +1,4 @@
+include ':ifood-connector'
+project(':ifood-connector').projectDir = new File(settingsDir, '../../../Swagger/CodeGenerator/iFood')
+
 rootProject.name = 'spring-boot-kafka-demo'

@@ -1,6 +1,8 @@
 
 package io.fab.connector;
 
+import java.util.Date;
+
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import io.fab.connector.consumers.CatalogEventConsumer;
 import io.fab.connector.data.Brand;
-import io.fab.connector.data.CatalogEvent;
 import io.fab.connector.data.CatalogEventMessage;
-import io.fab.connector.data.CatalogEventType;
+import io.fab.connector.data.Event;
+import io.fab.connector.data.EventType;
 import io.fab.connector.data.Manufacturer;
 import io.fab.connector.data.Package;
 import io.fab.connector.data.Photo;
@@ -37,8 +39,8 @@ public abstract class AbstractBaseKafkaTest {
 	@ClassRule
 	public static EmbeddedKafkaRule embeddedKafkaRule = new EmbeddedKafkaRule(1, true, "test.t");
 
-	protected CatalogEventMessage buildBaseCatalogEventMessage(final CatalogEventType catalogEventType) {
-		final String sku = "0085300076";
+	protected CatalogEventMessage buildBaseCatalogEventMessage(final EventType catalogEventType) {
+		final String sku = "1234";
 		final String name = "CHAVE DE IMPACTO PNEUMATICA 1/2\" 66KGFM";
 		final String description
 			= "A Chave impacto pneumática Puma AT-2810/16 possui movimento rotativo com golpes ampliados.";
@@ -58,7 +60,7 @@ public abstract class AbstractBaseKafkaTest {
 
 		final Product product = new Product(sku, name, description, price, stock, pack, brand, manufacturer, photo);
 
-		final CatalogEvent event = new CatalogEvent(catalogEventType, null);
+		final Event event = new Event(catalogEventType, null, new Date());
 
 		final Source source = Source.GAVETEIRO;
 

@@ -8,12 +8,12 @@ public class CatalogEventMessage implements Serializable {
 	private static final long serialVersionUID = 5164970578419625835L;
 
 	private Product product;
-	private CatalogEvent event;
+	private Event event;
 	private Source source;
 
 	CatalogEventMessage() {}
 
-	public CatalogEventMessage(final Product product, final CatalogEvent event, final Source source) {
+	public CatalogEventMessage(final Product product, final Event event, final Source source) {
 		this.product = product;
 		this.event = event;
 		this.source = source;
@@ -23,7 +23,7 @@ public class CatalogEventMessage implements Serializable {
 		return product;
 	}
 
-	public CatalogEvent getEvent() {
+	public Event getEvent() {
 		return event;
 	}
 

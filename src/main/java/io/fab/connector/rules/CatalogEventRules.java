@@ -7,21 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import io.fab.connector.data.CatalogEventMessage;
-import io.fab.connector.data.CatalogEventType;
+import io.fab.connector.data.EventType;
 import io.fab.connector.processors.CatalogEventProcessorStrategy;
 
 @Component
 public class CatalogEventRules {
 
 	@Autowired
-	private Map<CatalogEventType, CatalogEventProcessorStrategy> strategiesMap;
+	private IFoodAuthenticationRules authenticationRules;
+
+	@Autowired
+	private Map<EventType, CatalogEventProcessorStrategy> strategiesMap;
 
 	public void processMessage(final CatalogEventMessage message) {
+		authenticationRules.loadIFoodApiAccessToken();
+
 		final CatalogEventProcessorStrategy strategy = findStrategy(message.getEvent().getType());
 		strategy.processCatalogEvent(message);
 	}
 
-	private CatalogEventProcessorStrategy findStrategy(final CatalogEventType type) {
+	private CatalogEventProcessorStrategy findStrategy(final EventType type) {
 		return strategiesMap.entrySet()
 			.parallelStream()
 			.filter(entry -> entry.getKey() == type)

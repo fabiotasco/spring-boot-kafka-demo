@@ -44,6 +44,10 @@ public class Product implements Serializable {
 		return sku;
 	}
 
+	public void setSku(final String sku) {
+		this.sku = sku;
+	}
+
 	public String getName() {
 		return name;
 	}
