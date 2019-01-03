@@ -1,0 +1,2 @@
+# spring-boot-kafka-demo
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1b20afa037e34094bd6d595a7c692189)](https://app.codacy.com/app/fab-io/spring-boot-kafka-demo?utm_source=github.com&utm_medium=referral&utm_content=fabiotasco/spring-boot-kafka-demo&utm_campaign=Badge_Grade_Settings)
