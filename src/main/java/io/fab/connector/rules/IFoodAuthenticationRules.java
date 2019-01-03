@@ -45,6 +45,7 @@ public class IFoodAuthenticationRules {
 		String accessToken = null;
 		if (iFoodApiAccessTokenStorage.getAccessToken() != null && !isAccessTokenExpired()) {
 			accessToken = iFoodApiAccessTokenStorage.getAccessToken();
+
 			LOG.debug("Using in-memory IFood API access token!");
 
 		} else {

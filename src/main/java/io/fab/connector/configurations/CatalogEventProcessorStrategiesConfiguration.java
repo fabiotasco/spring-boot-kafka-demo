@@ -42,7 +42,7 @@ public class CatalogEventProcessorStrategiesConfiguration {
 	@Bean
 	public Map<EventType, CatalogEventProcessorStrategy> strategiesMap() {
 		LOG.info("Mapping catalog events processor strategies...");
-		final Map<EventType, CatalogEventProcessorStrategy> strategiesMap = new HashMap<>(4);
+		final Map<EventType, CatalogEventProcessorStrategy> strategiesMap = new HashMap<>(EventType.values().length);
 
 		addStrategy(strategiesMap, EventType.STOCK_UPDATE, stockUpdateEventProcessorStrategy);
 		addStrategy(strategiesMap, EventType.PRICE_UPDATE, priceUpdateEventProcessorStrategy);

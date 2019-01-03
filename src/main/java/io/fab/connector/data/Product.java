@@ -3,19 +3,32 @@ package io.fab.connector.data;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = -1342300056449001396L;
 
 	private String sku;
+
 	private String name;
+
 	private String description;
+
 	private Price price;
+
 	private Stock stock;
+
+	@JsonAlias("package")
 	private Package pack;
+
+	private UnitOfMeasurement unitOfMeasurement;
+
 	private Brand brand;
+
 	private Manufacturer manufacturer;
-	private Photo photo;
+
+	private Media media;
 
 	Product() {}
 
@@ -26,26 +39,24 @@ public class Product implements Serializable {
 		final Price price,
 		final Stock stock,
 		final Package pack,
+		final UnitOfMeasurement unitOfMeasurement,
 		final Brand brand,
 		final Manufacturer manufacturer,
-		final Photo photo) {
+		final Media media) {
 		this.sku = sku;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
 		this.pack = pack;
+		this.unitOfMeasurement = unitOfMeasurement;
 		this.brand = brand;
 		this.manufacturer = manufacturer;
-		this.photo = photo;
+		this.media = media;
 	}
 
 	public String getSku() {
 		return sku;
-	}
-
-	public void setSku(final String sku) {
-		this.sku = sku;
 	}
 
 	public String getName() {
@@ -68,6 +79,10 @@ public class Product implements Serializable {
 		return pack;
 	}
 
+	public UnitOfMeasurement getUnitOfMeasurement() {
+		return unitOfMeasurement;
+	}
+
 	public Brand getBrand() {
 		return brand;
 	}
@@ -76,8 +91,8 @@ public class Product implements Serializable {
 		return manufacturer;
 	}
 
-	public Photo getPhoto() {
-		return photo;
+	public Media getMedia() {
+		return media;
 	}
 
 	@Override
@@ -87,12 +102,13 @@ public class Product implements Serializable {
 		result = prime * result + (brand == null ? 0 : brand.hashCode());
 		result = prime * result + (description == null ? 0 : description.hashCode());
 		result = prime * result + (manufacturer == null ? 0 : manufacturer.hashCode());
+		result = prime * result + (media == null ? 0 : media.hashCode());
 		result = prime * result + (name == null ? 0 : name.hashCode());
 		result = prime * result + (pack == null ? 0 : pack.hashCode());
-		result = prime * result + (photo == null ? 0 : photo.hashCode());
 		result = prime * result + (price == null ? 0 : price.hashCode());
 		result = prime * result + (sku == null ? 0 : sku.hashCode());
 		result = prime * result + (stock == null ? 0 : stock.hashCode());
+		result = prime * result + (unitOfMeasurement == null ? 0 : unitOfMeasurement.hashCode());
 		return result;
 	}
 
@@ -129,6 +145,13 @@ public class Product implements Serializable {
 		} else if (!manufacturer.equals(other.manufacturer)) {
 			return false;
 		}
+		if (media == null) {
+			if (other.media != null) {
+				return false;
+			}
+		} else if (!media.equals(other.media)) {
+			return false;
+		}
 		if (name == null) {
 			if (other.name != null) {
 				return false;
@@ -141,13 +164,6 @@ public class Product implements Serializable {
 				return false;
 			}
 		} else if (!pack.equals(other.pack)) {
-			return false;
-		}
-		if (photo == null) {
-			if (other.photo != null) {
-				return false;
-			}
-		} else if (!photo.equals(other.photo)) {
 			return false;
 		}
 		if (price == null) {
@@ -171,6 +187,13 @@ public class Product implements Serializable {
 		} else if (!stock.equals(other.stock)) {
 			return false;
 		}
+		if (unitOfMeasurement == null) {
+			if (other.unitOfMeasurement != null) {
+				return false;
+			}
+		} else if (!unitOfMeasurement.equals(other.unitOfMeasurement)) {
+			return false;
+		}
 		return true;
 	}
 
@@ -187,12 +210,14 @@ public class Product implements Serializable {
 			+ stock
 			+ ", pack="
 			+ pack
+			+ ", unitOfMeasurement="
+			+ unitOfMeasurement
 			+ ", brand="
 			+ brand
 			+ ", manufacturer="
 			+ manufacturer
-			+ ", photo="
-			+ photo
+			+ ", media="
+			+ media
 			+ "]";
 	}
 

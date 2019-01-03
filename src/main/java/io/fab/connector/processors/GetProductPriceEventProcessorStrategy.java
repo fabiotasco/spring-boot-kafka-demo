@@ -24,6 +24,7 @@ public class GetProductPriceEventProcessorStrategy implements CatalogEventProces
 	public void processCatalogEvent(final CatalogEventMessage message) {
 		final List<Product> products = productsApi.getPricesUsingGET(message.getProduct().getSku());
 		products.forEach(product -> LOG.debug(product.toString()));
+		// TODO: Complementar a lógica!
 	}
 
 }

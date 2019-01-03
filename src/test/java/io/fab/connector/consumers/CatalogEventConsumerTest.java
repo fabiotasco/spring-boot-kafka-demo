@@ -46,7 +46,7 @@ public class CatalogEventConsumerTest {
 
 	private CatalogEventMessage createMessage() {
 		return new CatalogEventMessage(
-			new Product("12345678", "Teste", null, null, null, null, null, null, null),
+			new Product("12345678", "Teste", null, null, null, null, null, null, null, null),
 			new Event(EventType.STOCK_UPDATE, null, new Date()),
 			Source.GAVETEIRO);
 	}

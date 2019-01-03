@@ -1,6 +1,7 @@
 
 package io.fab.connector;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.junit.ClassRule;
@@ -17,12 +18,15 @@ import io.fab.connector.data.CatalogEventMessage;
 import io.fab.connector.data.Event;
 import io.fab.connector.data.EventType;
 import io.fab.connector.data.Manufacturer;
+import io.fab.connector.data.Media;
 import io.fab.connector.data.Package;
-import io.fab.connector.data.Photo;
 import io.fab.connector.data.Price;
 import io.fab.connector.data.Product;
 import io.fab.connector.data.Source;
 import io.fab.connector.data.Stock;
+import io.fab.connector.data.UnitOfMeasurement;
+import io.fab.connector.data.UnitOfMeasurementConversionFactor;
+import io.fab.connector.data.UnitOfMeasurementType;
 import io.fab.connector.producers.CatalogEventProducer;
 
 @RunWith(SpringRunner.class)
@@ -47,18 +51,26 @@ public abstract class AbstractBaseKafkaTest {
 
 		final Price price = new Price(534.11, 534.11);
 
-		final Stock stock = new Stock(500);
+		final Stock stock = new Stock(500, 10);
 
 		final Package pack = new Package(2.81, 0.20, 0.70, 0.18);
 
+		final UnitOfMeasurement unitOfMeasurement = new UnitOfMeasurement(
+			1,
+			UnitOfMeasurementType.UNIT,
+			Arrays.asList(new UnitOfMeasurementConversionFactor[] {
+				new UnitOfMeasurementConversionFactor(1, 50, UnitOfMeasurementType.PACKAGE),
+				new UnitOfMeasurementConversionFactor(2, 100, UnitOfMeasurementType.BOX) }));
+
 		final Brand brand = new Brand("PUMA");
 
-		final Manufacturer manufacturer = new Manufacturer("AT-2810/16", "00811571013579");
+		final Manufacturer manufacturer = new Manufacturer("AT-2810/16", null, "00811571013579");
 
-		final Photo photo = new Photo(
+		final Media media = new Media(
 			"https://res-2.cloudinary.com/gaveteiro/image/upload/c_pad,h_283,w_283/v1498683102/z0qo3xvdnj5sytuzfzk9.jpg");
 
-		final Product product = new Product(sku, name, description, price, stock, pack, brand, manufacturer, photo);
+		final Product product
+			= new Product(sku, name, description, price, stock, pack, unitOfMeasurement, brand, manufacturer, media);
 
 		final Event event = new Event(catalogEventType, null, new Date());
 

@@ -11,6 +11,9 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: io.fab.connector.data
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: America/Sao_Paulo
 
 # Application
 app:

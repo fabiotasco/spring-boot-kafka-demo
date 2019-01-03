@@ -5,17 +5,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.fab.connector.utils.JsonUtils;
 
-/**
- * Tipos de eventos do catálogo.
- *
- * @author fabio.tasco
- */
-public enum EventType {
+public enum UnitOfMeasurementType {
 
-	STOCK_UPDATE,
-	PRICE_UPDATE,
-	ORDER_UPDATE,
-	GET_PRODUCT_PRICE;
+	UNIT,
+	PACKAGE,
+	BOX,
+	REAM;
 
 	@JsonValue
 	public String toJsonValue() {
