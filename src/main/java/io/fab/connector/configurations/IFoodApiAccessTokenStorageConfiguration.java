@@ -16,7 +16,7 @@ import io.fab.connector.ifood.IFoodApiAccessTokenStorage;
 public class IFoodApiAccessTokenStorageConfiguration {
 
 	@Bean
-	public IFoodApiAccessTokenStorage IFoodApiAccessTokenStorage() {
+	public IFoodApiAccessTokenStorage iFoodApiAccessTokenStorage() {
 		return new IFoodApiAccessTokenStorage();
 	}
 

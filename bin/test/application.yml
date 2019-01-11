@@ -1,4 +1,35 @@
 # Kafka
 spring:
   kafka:
-    bootstrap-servers: ${spring.embedded.kafka.brokers}
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: test-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: io.fab.connector.data
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: America/Sao_Paulo
+
+# Application
+app:
+  kafka:
+    topic:
+      catalog-event: catalog-change
+  ifood:
+    url: https://shop.ifood.com.br/api/v1
+    auth:
+      username: tester@ifood.com.br
+      password: 123123
+      access-token-expiration-time: 1440000000 # Tempo em milissegundos
+    
+# Log
+logging:
+  level:
+    root: error
+    org.springframework: info
+    io.fab: debug

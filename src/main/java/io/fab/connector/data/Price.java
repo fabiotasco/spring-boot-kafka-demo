@@ -7,30 +7,23 @@ public class Price implements Serializable {
 
 	private static final long serialVersionUID = 2276219524999466173L;
 
-	private Double unit;
-	private Double total;
+	private Double amount;
 
 	Price() {}
 
-	public Price(final Double unit, final Double total) {
-		this.unit = unit;
-		this.total = total;
+	public Price(final Double amount) {
+		this.amount = amount;
 	}
 
-	public Double getUnit() {
-		return unit;
-	}
-
-	public Double getTotal() {
-		return total;
+	public Double getAmount() {
+		return amount;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (total == null ? 0 : total.hashCode());
-		result = prime * result + (unit == null ? 0 : unit.hashCode());
+		result = prime * result + (amount == null ? 0 : amount.hashCode());
 		return result;
 	}
 
@@ -46,18 +39,11 @@ public class Price implements Serializable {
 			return false;
 		}
 		final Price other = (Price) obj;
-		if (total == null) {
-			if (other.total != null) {
+		if (amount == null) {
+			if (other.amount != null) {
 				return false;
 			}
-		} else if (!total.equals(other.total)) {
-			return false;
-		}
-		if (unit == null) {
-			if (other.unit != null) {
-				return false;
-			}
-		} else if (!unit.equals(other.unit)) {
+		} else if (!amount.equals(other.amount)) {
 			return false;
 		}
 		return true;
@@ -65,7 +51,7 @@ public class Price implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Price [unit=" + unit + ", total=" + total + "]";
+		return "Price [amount=" + amount + "]";
 	}
 
 }

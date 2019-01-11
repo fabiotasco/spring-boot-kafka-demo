@@ -3,30 +3,29 @@ package io.fab.connector.data;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Map;
 
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = 1362947731029899481L;
 
+	private String id;
 	private EventType type;
-	private Map<String, Object> data;
 	private Date createdAt;
 
 	Event() {}
 
-	public Event(final EventType type, final Map<String, Object> data, final Date createdAt) {
+	public Event(final String id, final EventType type, final Date createdAt) {
+		this.id = id;
 		this.type = type;
-		this.data = data;
 		this.createdAt = createdAt;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public EventType getType() {
 		return type;
-	}
-
-	public Map<String, Object> getData() {
-		return data;
 	}
 
 	public Date getCreatedAt() {
@@ -38,7 +37,7 @@ public class Event implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (createdAt == null ? 0 : createdAt.hashCode());
-		result = prime * result + (data == null ? 0 : data.hashCode());
+		result = prime * result + (id == null ? 0 : id.hashCode());
 		result = prime * result + (type == null ? 0 : type.hashCode());
 		return result;
 	}
@@ -62,11 +61,11 @@ public class Event implements Serializable {
 		} else if (!createdAt.equals(other.createdAt)) {
 			return false;
 		}
-		if (data == null) {
-			if (other.data != null) {
+		if (id == null) {
+			if (other.id != null) {
 				return false;
 			}
-		} else if (!data.equals(other.data)) {
+		} else if (!id.equals(other.id)) {
 			return false;
 		}
 		if (type != other.type) {
@@ -77,7 +76,7 @@ public class Event implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Event [type=" + type + ", data=" + data + ", createdAt=" + createdAt + "]";
+		return "Event [id=" + id + ", type=" + type + ", createdAt=" + createdAt + "]";
 	}
 
 }

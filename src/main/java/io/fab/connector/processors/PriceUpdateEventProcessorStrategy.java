@@ -1,35 +1,42 @@
 
 package io.fab.connector.processors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 
 import br.com.gaveteiro.ifood.client.api.ProductsApi;
 import br.com.gaveteiro.ifood.client.model.ProductPrice;
+import io.fab.connector.converters.ProductPriceConverter;
 import io.fab.connector.data.CatalogEventMessage;
-import io.fab.connector.utils.CurrencyUtils;
 
 @Component
 public class PriceUpdateEventProcessorStrategy implements CatalogEventProcessorStrategy {
 
+	private static final Logger LOG = LoggerFactory.getLogger(PriceUpdateEventProcessorStrategy.class);
+
 	private static final Integer MINIMUM_ORDER_QUANTITY = 1;
+
+	@Autowired
+	private ProductPriceConverter productPriceConverter;
 
 	@Autowired
 	private ProductsApi productsApi;
 
 	@Override
 	public void processCatalogEvent(final CatalogEventMessage message) {
-		productsApi.updateProductPriceUsingPUT(message.getProduct().getSku(),
-			MINIMUM_ORDER_QUANTITY,
-			buildProductPrice(message));
-	}
+		try {
+			final String sku = message.getProduct().getSku();
+			final ProductPrice productPrice = productPriceConverter.toProductPrice(message.getProduct());
 
-	private ProductPrice buildProductPrice(final CatalogEventMessage message) {
-		final ProductPrice productPrice = new ProductPrice();
-		productPrice.setPrice(CurrencyUtils.toLong(message.getProduct().getPrice().getTotal()));
-		productPrice.setMaximumOrderQuantity(message.getProduct().getStock().getQuantity());
+			productsApi.updatePrice(sku, MINIMUM_ORDER_QUANTITY, productPrice);
 
-		return productPrice;
+		} catch (final RestClientException e) {
+			LOG.error("Error while deleting price from message {}", message, e);
+		}
+
 	}
 
 }

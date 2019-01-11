@@ -10,7 +10,7 @@ public class JsonUtils {
 	 * @return O nome formatado.
 	 */
 	public static String formatEnumName(final String name) {
-		if (name == null || name.length() < 1) {
+		if (name == null || name.isEmpty()) {
 			return name;
 		}
 		final String[] split = name.split("_");

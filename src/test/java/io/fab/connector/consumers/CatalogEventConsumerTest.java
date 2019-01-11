@@ -4,6 +4,7 @@ package io.fab.connector.consumers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.ClassRule;
@@ -20,6 +21,7 @@ import io.fab.connector.data.Event;
 import io.fab.connector.data.EventType;
 import io.fab.connector.data.Product;
 import io.fab.connector.data.Source;
+import io.fab.connector.data.Stock;
 import io.fab.connector.producers.CatalogEventProducer;
 
 @RunWith(SpringRunner.class)
@@ -46,8 +48,8 @@ public class CatalogEventConsumerTest {
 
 	private CatalogEventMessage createMessage() {
 		return new CatalogEventMessage(
-			new Product("12345678", "Teste", null, null, null, null, null, null, null, null),
-			new Event(EventType.STOCK_UPDATE, null, new Date()),
+			new Product("12345678", "Teste", null, null, new Stock(100, 0), null, null, null, null, null),
+			new Event(UUID.randomUUID().toString(), EventType.STOCK_UPDATE, new Date()),
 			Source.GAVETEIRO);
 	}
 

@@ -1,8 +1,10 @@
 
-package io.fab.connector;
+package io.fab.connector.consumers;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
@@ -12,7 +14,6 @@ import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import io.fab.connector.consumers.CatalogEventConsumer;
 import io.fab.connector.data.Brand;
 import io.fab.connector.data.CatalogEventMessage;
 import io.fab.connector.data.Event;
@@ -43,13 +44,18 @@ public abstract class AbstractBaseKafkaTest {
 	@ClassRule
 	public static EmbeddedKafkaRule embeddedKafkaRule = new EmbeddedKafkaRule(1, true, "test.t");
 
+	protected boolean assertThatMessageWasConsumed() throws Exception {
+		consumer.getLatch().await(10000, TimeUnit.MILLISECONDS);
+		return consumer.getLatch().getCount() == 0;
+	}
+
 	protected CatalogEventMessage buildBaseCatalogEventMessage(final EventType catalogEventType) {
 		final String sku = "1234";
 		final String name = "CHAVE DE IMPACTO PNEUMATICA 1/2\" 66KGFM";
 		final String description
 			= "A Chave impacto pneumática Puma AT-2810/16 possui movimento rotativo com golpes ampliados.";
 
-		final Price price = new Price(534.11, 534.11);
+		final Price price = new Price(534.11);
 
 		final Stock stock = new Stock(500, 10);
 
@@ -72,7 +78,7 @@ public abstract class AbstractBaseKafkaTest {
 		final Product product
 			= new Product(sku, name, description, price, stock, pack, unitOfMeasurement, brand, manufacturer, media);
 
-		final Event event = new Event(catalogEventType, null, new Date());
+		final Event event = new Event(UUID.randomUUID().toString(), catalogEventType, new Date());
 
 		final Source source = Source.GAVETEIRO;
 

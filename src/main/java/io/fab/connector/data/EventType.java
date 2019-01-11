@@ -12,10 +12,12 @@ import io.fab.connector.utils.JsonUtils;
  */
 public enum EventType {
 
-	STOCK_UPDATE,
 	PRICE_UPDATE,
+	PRICE_DELETE,
+	STOCK_UPDATE,
 	ORDER_UPDATE,
-	GET_PRODUCT_PRICE;
+	ORDER_DELAY,
+	UNKNOWN;
 
 	@JsonValue
 	public String toJsonValue() {

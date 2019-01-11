@@ -12,8 +12,9 @@ import org.springframework.context.annotation.Configuration;
 
 import io.fab.connector.data.EventType;
 import io.fab.connector.processors.CatalogEventProcessorStrategy;
-import io.fab.connector.processors.GetProductPriceEventProcessorStrategy;
+import io.fab.connector.processors.OrderDelayEventProcessorStrategy;
 import io.fab.connector.processors.OrderUpdateEventProcessorStrategy;
+import io.fab.connector.processors.PriceDeleteEventProcessorStrategy;
 import io.fab.connector.processors.PriceUpdateEventProcessorStrategy;
 import io.fab.connector.processors.StockUpdateEventProcessorStrategy;
 
@@ -34,10 +35,13 @@ public class CatalogEventProcessorStrategiesConfiguration {
 	private PriceUpdateEventProcessorStrategy priceUpdateEventProcessorStrategy;
 
 	@Autowired
+	private PriceDeleteEventProcessorStrategy priceDeleteEventProcessorStrategy;
+
+	@Autowired
 	private OrderUpdateEventProcessorStrategy orderUpdateEventProcessorStrategy;
 
 	@Autowired
-	private GetProductPriceEventProcessorStrategy getProductPriceEventProcessorStrategy;
+	private OrderDelayEventProcessorStrategy orderDelayEventProcessorStrategy;
 
 	@Bean
 	public Map<EventType, CatalogEventProcessorStrategy> strategiesMap() {
@@ -46,8 +50,9 @@ public class CatalogEventProcessorStrategiesConfiguration {
 
 		addStrategy(strategiesMap, EventType.STOCK_UPDATE, stockUpdateEventProcessorStrategy);
 		addStrategy(strategiesMap, EventType.PRICE_UPDATE, priceUpdateEventProcessorStrategy);
+		addStrategy(strategiesMap, EventType.PRICE_DELETE, priceDeleteEventProcessorStrategy);
 		addStrategy(strategiesMap, EventType.ORDER_UPDATE, orderUpdateEventProcessorStrategy);
-		addStrategy(strategiesMap, EventType.GET_PRODUCT_PRICE, getProductPriceEventProcessorStrategy);
+		addStrategy(strategiesMap, EventType.ORDER_DELAY, orderDelayEventProcessorStrategy);
 
 		LOG.info("Strategies mapped successfully to a total of {}!", strategiesMap.size());
 
