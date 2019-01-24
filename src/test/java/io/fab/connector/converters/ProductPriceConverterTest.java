@@ -31,7 +31,7 @@ public class ProductPriceConverterTest {
 	@Test
 	public void testSuccessfulConversion() {
 		final Price price = new Price(0.00);
-		final Stock stock = new Stock(0, 0);
+		final Stock stock = new Stock(0, 0, null);
 		final Product product = createProduct(price, stock);
 
 		final ProductPrice productPrice = converter.toProductPrice(product);
@@ -54,7 +54,7 @@ public class ProductPriceConverterTest {
 	@Test
 	public void testNullPrice() {
 		final Price price = null;
-		final Stock stock = new Stock(0, 0);
+		final Stock stock = new Stock(0, 0, null);
 
 		final Product product = createProduct(price, stock);
 
@@ -80,7 +80,7 @@ public class ProductPriceConverterTest {
 	}
 
 	private Product createProduct(final Price price, final Stock stock) {
-		return new Product(null, null, null, price, stock, null, null, null, null, null);
+		return new Product(null, null, null, price, stock, null, null, null, null, null, null);
 	}
 
 }

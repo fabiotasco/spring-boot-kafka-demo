@@ -48,8 +48,8 @@ public class CatalogEventConsumerTest {
 
 	private CatalogEventMessage createMessage() {
 		return new CatalogEventMessage(
-			new Product("12345678", "Teste", null, null, new Stock(100, 0), null, null, null, null, null),
-			new Event(UUID.randomUUID().toString(), EventType.STOCK_UPDATE, new Date()),
+			new Product("12345678", "Teste", null, null, new Stock(100, 0, null), null, null, null, null, null, null),
+			new Event(UUID.randomUUID().toString(), EventType.PRODUCT_STOCK_UPDATE, new Date()),
 			Source.GAVETEIRO);
 	}
 

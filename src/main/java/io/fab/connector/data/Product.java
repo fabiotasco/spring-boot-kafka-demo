@@ -30,6 +30,8 @@ public class Product implements Serializable {
 
 	private Media media;
 
+	private ProductStatus status;
+
 	Product() {}
 
 	public Product(
@@ -42,7 +44,8 @@ public class Product implements Serializable {
 		final UnitOfMeasurement unitOfMeasurement,
 		final Brand brand,
 		final Manufacturer manufacturer,
-		final Media media) {
+		final Media media,
+		final ProductStatus status) {
 		this.sku = sku;
 		this.name = name;
 		this.description = description;
@@ -53,6 +56,7 @@ public class Product implements Serializable {
 		this.brand = brand;
 		this.manufacturer = manufacturer;
 		this.media = media;
+		this.status = status;
 	}
 
 	public String getSku() {
@@ -95,6 +99,10 @@ public class Product implements Serializable {
 		return media;
 	}
 
+	public ProductStatus getStatus() {
+		return status;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,6 +115,7 @@ public class Product implements Serializable {
 		result = prime * result + (pack == null ? 0 : pack.hashCode());
 		result = prime * result + (price == null ? 0 : price.hashCode());
 		result = prime * result + (sku == null ? 0 : sku.hashCode());
+		result = prime * result + (status == null ? 0 : status.hashCode());
 		result = prime * result + (stock == null ? 0 : stock.hashCode());
 		result = prime * result + (unitOfMeasurement == null ? 0 : unitOfMeasurement.hashCode());
 		return result;
@@ -180,6 +189,9 @@ public class Product implements Serializable {
 		} else if (!sku.equals(other.sku)) {
 			return false;
 		}
+		if (status != other.status) {
+			return false;
+		}
 		if (stock == null) {
 			if (other.stock != null) {
 				return false;
@@ -218,6 +230,8 @@ public class Product implements Serializable {
 			+ manufacturer
 			+ ", media="
 			+ media
+			+ ", status="
+			+ status
 			+ "]";
 	}
 

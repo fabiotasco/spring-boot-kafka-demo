@@ -8,17 +8,17 @@ public class UnitOfMeasurementConversionFactor implements Serializable {
 	private static final long serialVersionUID = 7749361954777540612L;
 
 	private Integer order;
-	private Integer unit;
+	private Integer value;
 	private UnitOfMeasurementType type;
 
 	UnitOfMeasurementConversionFactor() {}
 
 	public UnitOfMeasurementConversionFactor(
 		final Integer order,
-		final Integer unit,
+		final Integer value,
 		final UnitOfMeasurementType type) {
 		this.order = order;
-		this.unit = unit;
+		this.value = value;
 		this.type = type;
 	}
 
@@ -26,8 +26,8 @@ public class UnitOfMeasurementConversionFactor implements Serializable {
 		return order;
 	}
 
-	public Integer getUnit() {
-		return unit;
+	public Integer getValue() {
+		return value;
 	}
 
 	public UnitOfMeasurementType getType() {
@@ -39,7 +39,7 @@ public class UnitOfMeasurementConversionFactor implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (type == null ? 0 : type.hashCode());
-		result = prime * result + (unit == null ? 0 : unit.hashCode());
+		result = prime * result + (value == null ? 0 : value.hashCode());
 		return result;
 	}
 
@@ -58,11 +58,11 @@ public class UnitOfMeasurementConversionFactor implements Serializable {
 		if (type != other.type) {
 			return false;
 		}
-		if (unit == null) {
-			if (other.unit != null) {
+		if (value == null) {
+			if (other.value != null) {
 				return false;
 			}
-		} else if (!unit.equals(other.unit)) {
+		} else if (!value.equals(other.value)) {
 			return false;
 		}
 		return true;
@@ -70,7 +70,7 @@ public class UnitOfMeasurementConversionFactor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UnitOfMeasurementConversionFactor [order=" + order + ", unit=" + unit + ", type=" + type + "]";
+		return "UnitOfMeasurementConversionFactor [order=" + order + ", value=" + value + ", type=" + type + "]";
 	}
 
 }

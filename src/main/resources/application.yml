@@ -25,7 +25,12 @@ app:
     auth:
       username: tester@ifood.com.br
       password: 123123
-      access-token-expiration-time: 1440000000 # Tempo em milissegundos
+      # Tempo em milissegundos (14400000 milisegundos = 4 horas)
+      access-token-expiration-time: 14400000
+    tasks:
+      event-listener:
+        # A cada 15 minutos: 0 0/15 * 1/1 * ?
+        cron: 0 0/15 * 1/1 * ? 
     
 # Log
 logging:

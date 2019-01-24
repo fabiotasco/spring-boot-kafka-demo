@@ -48,9 +48,9 @@ public class CatalogEventProcessorStrategiesConfiguration {
 		LOG.info("Mapping catalog events processor strategies...");
 		final Map<EventType, CatalogEventProcessorStrategy> strategiesMap = new HashMap<>(EventType.values().length);
 
-		addStrategy(strategiesMap, EventType.STOCK_UPDATE, stockUpdateEventProcessorStrategy);
-		addStrategy(strategiesMap, EventType.PRICE_UPDATE, priceUpdateEventProcessorStrategy);
-		addStrategy(strategiesMap, EventType.PRICE_DELETE, priceDeleteEventProcessorStrategy);
+		addStrategy(strategiesMap, EventType.PRODUCT_STOCK_UPDATE, stockUpdateEventProcessorStrategy);
+		addStrategy(strategiesMap, EventType.PRODUCT_PRICE_UPDATE, priceUpdateEventProcessorStrategy);
+		addStrategy(strategiesMap, EventType.PRODUCT_PRICE_DELETE, priceDeleteEventProcessorStrategy);
 		addStrategy(strategiesMap, EventType.ORDER_UPDATE, orderUpdateEventProcessorStrategy);
 		addStrategy(strategiesMap, EventType.ORDER_DELAY, orderDelayEventProcessorStrategy);
 

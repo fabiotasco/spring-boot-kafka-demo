@@ -12,7 +12,7 @@ public class PriceUpdateEventProcessorStrategyTest extends AbstractBaseKafkaTest
 
 	@Test
 	public void testEventProcessment() throws Exception {
-		producer.produce(buildBaseCatalogEventMessage(EventType.PRICE_UPDATE));
+		producer.produce(buildBaseCatalogEventMessage(EventType.PRODUCT_PRICE_UPDATE));
 		assertTrue(assertThatMessageWasConsumed());
 	}
 

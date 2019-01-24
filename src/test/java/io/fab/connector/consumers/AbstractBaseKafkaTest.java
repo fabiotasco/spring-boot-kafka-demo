@@ -23,6 +23,7 @@ import io.fab.connector.data.Media;
 import io.fab.connector.data.Package;
 import io.fab.connector.data.Price;
 import io.fab.connector.data.Product;
+import io.fab.connector.data.ProductStatus;
 import io.fab.connector.data.Source;
 import io.fab.connector.data.Stock;
 import io.fab.connector.data.UnitOfMeasurement;
@@ -57,7 +58,7 @@ public abstract class AbstractBaseKafkaTest {
 
 		final Price price = new Price(534.11);
 
-		final Stock stock = new Stock(500, 10);
+		final Stock stock = new Stock(500, 10, null);
 
 		final Package pack = new Package(2.81, 0.20, 0.70, 0.18);
 
@@ -75,8 +76,20 @@ public abstract class AbstractBaseKafkaTest {
 		final Media media = new Media(
 			"https://res-2.cloudinary.com/gaveteiro/image/upload/c_pad,h_283,w_283/v1498683102/z0qo3xvdnj5sytuzfzk9.jpg");
 
-		final Product product
-			= new Product(sku, name, description, price, stock, pack, unitOfMeasurement, brand, manufacturer, media);
+		final ProductStatus status = ProductStatus.ACTIVE;
+
+		final Product product = new Product(
+			sku,
+			name,
+			description,
+			price,
+			stock,
+			pack,
+			unitOfMeasurement,
+			brand,
+			manufacturer,
+			media,
+			status);
 
 		final Event event = new Event(UUID.randomUUID().toString(), catalogEventType, new Date());
 

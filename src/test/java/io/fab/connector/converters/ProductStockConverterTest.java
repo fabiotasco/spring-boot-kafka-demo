@@ -29,7 +29,7 @@ public class ProductStockConverterTest {
 
 	@Test
 	public void testSuccessfulConversion() {
-		final Stock stock = new Stock(0, 0);
+		final Stock stock = new Stock(0, 0, null);
 		final Product product = createProduct(stock);
 		final ProductStock productStock = productStockConverter.toProductStock(product);
 
@@ -60,7 +60,7 @@ public class ProductStockConverterTest {
 	}
 
 	private Product createProduct(final Stock stock) {
-		return new Product(null, null, null, null, stock, null, null, null, null, null);
+		return new Product(null, null, null, null, stock, null, null, null, null, null, null);
 	}
 
 }

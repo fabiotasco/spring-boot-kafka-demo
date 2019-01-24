@@ -9,28 +9,26 @@ public class Stock implements Serializable {
 
 	private Integer quantity;
 	private Integer reserved;
+	private Supplier supplier;
 
 	Stock() {}
 
-	public Stock(final Integer quantity, final Integer reserved) {
+	public Stock(final Integer quantity, final Integer reserved, final Supplier supplier) {
 		this.quantity = quantity;
 		this.reserved = reserved;
+		this.supplier = supplier;
 	}
 
 	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(final Integer quantity) {
-		this.quantity = quantity;
-	}
-
 	public Integer getReserved() {
 		return reserved;
 	}
 
-	public void setReserved(final Integer reserved) {
-		this.reserved = reserved;
+	public Supplier getSupplier() {
+		return supplier;
 	}
 
 	@Override
@@ -39,6 +37,7 @@ public class Stock implements Serializable {
 		int result = 1;
 		result = prime * result + (quantity == null ? 0 : quantity.hashCode());
 		result = prime * result + (reserved == null ? 0 : reserved.hashCode());
+		result = prime * result + (supplier == null ? 0 : supplier.hashCode());
 		return result;
 	}
 
@@ -68,12 +67,19 @@ public class Stock implements Serializable {
 		} else if (!reserved.equals(other.reserved)) {
 			return false;
 		}
+		if (supplier == null) {
+			if (other.supplier != null) {
+				return false;
+			}
+		} else if (!supplier.equals(other.supplier)) {
+			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Stock [quantity=" + quantity + ", reserved=" + reserved + "]";
+		return "Stock [quantity=" + quantity + ", reserved=" + reserved + ", supplier=" + supplier + "]";
 	}
 
 }

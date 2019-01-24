@@ -5,13 +5,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.fab.connector.utils.JsonUtils;
 
-public enum UnitOfMeasurementType {
+/**
+ * Fornecedor.
+ *
+ * @author fabio.tasco
+ */
+public enum SupplierType {
 
-	UNIT,
-	PACKAGE,
-	BOX,
-	REAM,
-	ROLL;
+	GAVETEIRO,
+	CONSTRUJA,
+	DUFRIO,
+	ELETRICA_PJ,
+	MC_TINTAS;
 
 	@JsonValue
 	public String toJsonValue() {
