@@ -28,9 +28,9 @@ app:
       # Tempo em milissegundos (14400000 milisegundos = 4 horas)
       access-token-expiration-time: 14400000
     tasks:
-      event-listener:
+      sync-order:
         # A cada 15 minutos: 0 0/15 * 1/1 * ?
-        cron: 0 0/15 * 1/1 * ? 
+        cron: 0 0/1 * 1/1 * ? 
     
 # Log
 logging:

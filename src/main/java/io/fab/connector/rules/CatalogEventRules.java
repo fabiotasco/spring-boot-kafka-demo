@@ -14,7 +14,7 @@ import io.fab.connector.processors.CatalogEventProcessorStrategy;
 public class CatalogEventRules {
 
 	@Autowired
-	private IFoodAuthenticationRules authenticationRules;
+	private AuthenticationRules authenticationRules;
 
 	@Autowired
 	private Map<EventType, CatalogEventProcessorStrategy> strategiesMap;

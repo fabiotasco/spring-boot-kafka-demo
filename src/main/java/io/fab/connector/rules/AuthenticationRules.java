@@ -16,9 +16,9 @@ import br.com.gaveteiro.ifood.client.model.AuthInfo;
 import io.fab.connector.ifood.IFoodApiAccessTokenStorage;
 
 @Component
-public class IFoodAuthenticationRules {
+public class AuthenticationRules {
 
-	private static final Logger LOG = LoggerFactory.getLogger(IFoodAuthenticationRules.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AuthenticationRules.class);
 
 	@Autowired
 	private IFoodApiAccessTokenStorage iFoodApiAccessTokenStorage;
